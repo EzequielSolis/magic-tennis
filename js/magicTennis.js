@@ -1,39 +1,37 @@
 var opcionesJuego = {
+	debug : Kiwi.DEBUG_ON, //Or Kiwi.DEBUG_OFF
+	deviceTarget : Kiwi.TARGET_BROWSER, //Or Kiwi.TARGET_COCOON
 	renderer: Kiwi.RENDERER_WEBGL, 
+	scaleType : Kiwi.Stage.SCALE_NONE, //Also accepts "SCALE_STRETCH" or "SCALE_FIT"
 	width: 1024,
-	height: 800
+	height: 800,
+	plugins : [] // plugins : ['SaveGame', 'InAppPurchase'],
 }
+	
 
+/*
+Parametros de Kiwi.Game:
+1) elemento canvas donde se inserta el juego (cadena vacia y se creará solo)
+2) nombre del juego
+3) estado inicial
+4) opciones del juego
+*/
 var magicTennis = new Kiwi.Game('', 'Magic Tennis', null, opcionesJuego);
-var estadoPrueba = new Kiwi.State("estadoPrueba");
+
+
+
+
+
+
+//---------Creación de Estados del juego--------------
+
+var bolaEnJuego = new Kiwi.State("bolaEnJuego");
 //var estadoCarga = new Kiwi.State("estadoCarga");
 
-estadoPrueba.preload = function(){
-	Kiwi.State.prototype.preload.call(this);
-	//añadir graficos
-	this.addImage("cesped", "graficos/cesped.png");
-	this.addImage("campo", "graficos/campo3.png");
-	this.addImage("bola", "graficos/bola.jpg");
-}
 
-estadoPrueba.create = function() {
-	Kiwi.State.prototype.create.call(this);
-	//se colocan los graficos y los keybindings
-	this.fondo = new Kiwi.GameObjects.StaticImage (this, this.textures.cesped, 0, 0);
-	this.campo = new Kiwi.GameObjects.StaticImage (this, this.textures.campo, 150, -20);
-	this.bola = new Kiwi.GameObjects.StaticImage (this, this.textures.bola, 400, 140);
-
-	this.addChild(this.fondo);
-	this.addChild(this.campo);
-	this.addChild(this.bola);
-}
-
-estadoPrueba.update = function() {
-	Kiwi.State.prototype.update.call(this);
-	//lo que se hace en cada frame
-}
+magicTennis.states.addState(bolaEnJuego);
 
 
-magicTennis.states.addState(estadoPrueba);
 
-magicTennis.states.switchState("estadoPrueba"); //estado inicial
+magicTennis.states.switchState("bolaEnJuego"); //estado inicial
+
