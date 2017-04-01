@@ -4,7 +4,7 @@ var opcionesJuego = {
 	renderer: Kiwi.RENDERER_WEBGL, 
 	scaleType : Kiwi.Stage.SCALE_NONE, //Also accepts "SCALE_STRETCH" or "SCALE_FIT"
 	width: 1024,
-	height: 800,
+	height: 768,
 	plugins : [] // plugins : ['SaveGame', 'InAppPurchase'],
 }
 	
