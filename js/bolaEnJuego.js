@@ -1,3 +1,9 @@
+var desplazamientoCampo = {
+//cantidad de pixeles que se mueve el campo hacia la derecha, se usara en matematicas.js
+	x : 100,
+	y : 0
+}
+console.log(mates.rectToTrap(0,0));
 bolaEnJuego.preload = function(){
 	//Kiwi.State.prototype.preload.call(this);
 	//añadir graficos
@@ -10,12 +16,12 @@ bolaEnJuego.create = function() {
 	//Kiwi.State.prototype.create.call(this);
 	//se colocan los graficos y los keybindings
 	this.fondo = new Kiwi.GameObjects.StaticImage (this, this.textures.cesped, 0, 0);
-	this.campo = new Kiwi.GameObjects.StaticImage (this, this.textures.campo, 100, 0);
-	this.bola = new Kiwi.GameObjects.StaticImage (this, this.textures.bola, 500, 700);
+	this.campo = new Kiwi.GameObjects.StaticImage (this, this.textures.campo, desplazamientoCampo.x, desplazamientoCampo.y);
+	var posicion = mates.rectToTrap(394,1065);
+	this.bola = new Kiwi.GameObjects.StaticImage (this, this.textures.bola, posicion.x, posicion.y);
 
 	this.campo.scaleX = 1;
 	this.campo.scaleY = 1; 
-
 	//HUD
 	var puntuacion1 = "Jugador A: 15";
 	var puntuacion2 = "Jugador B: 30";
