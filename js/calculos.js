@@ -45,7 +45,7 @@ function inicializarMates(){
 	}
 
 	mates.rectToTrap = function (xr, yr){
-		
+
 		x = mates.xp(xr,yr);
 		y = mates.yp(xr,yr);
 		//desplazamos las coordenadas tanto como desplacemos el campo
@@ -58,3 +58,68 @@ function inicializarMates(){
 	}
 
 }
+
+//dadas unas coordenadas x,y (del rectangulo) 
+//devuelve un objeto {campo, saque} con la ubicacion de la bola en relacion al campo
+//actualmente interpreta los pasillos de dobles como fuera
+function lugarBote(x, y){
+	var campo; //arriba, abajo o fuera
+	var saque; //arrIzqd, arrDrch, abjIzqd, abjDrch o fuera
+
+	//fuera del rectangulo de juego
+	if (x < 217.5 || x > 782 - 217.5 || y < 266.5 || y > 1333 - 266.5){
+		campo = "fuera";
+		saque = "fuera";
+	}
+	else{
+		if (y > 667.5){
+			campo = "abajo";
+			if(y > 1333-449.5)
+				saque = "fuera";
+			else if (x <393.5)
+				saque = "abjIzqd";
+			else
+				saque = "abjDrch";
+		} else{
+			campo = "arriba";
+			if (y < 449.5)
+				saque = "fuera";
+			else if (x <393.5)
+				saque = "arrIzqd";
+			else
+				saque = "arrDrch";
+		}
+	}
+	return {campo: campo, saque : saque};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
