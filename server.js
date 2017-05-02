@@ -1,14 +1,9 @@
 var express = require("express"),  
     app = express(),
-	server = require('http').Server(app),
-	bodyParser  = require("body-parser"),
-    methodOverride = require("method-override"),
-	io = require('socket.io')(server);
+    server = require('http').Server(app),
+  	io = require('socket.io')(server);
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/')); 
-app.use(bodyParser.json());  
-app.use(methodOverride());
 
 var router = express.Router();
 
@@ -31,6 +26,6 @@ app.listen(8888, '0.0.0.0', function() {
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
-    console.log(data);
+  console.log(data);
   });
 });
